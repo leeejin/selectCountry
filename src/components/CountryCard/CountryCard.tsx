@@ -1,9 +1,7 @@
 import clsx from "clsx";
-import { PropsWithChildren } from "react";
 import { SelectCard } from "../../types/type";
 
-function CountryCard({ handleSelect, country }: PropsWithChildren<SelectCard>) {
-  console.log(country);
+function CountryCard({ handleSelect, country }: SelectCard) {
   return (
     <div
       className={clsx("card", {

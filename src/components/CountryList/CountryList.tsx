@@ -22,10 +22,16 @@ function CountryList() {
     );
     setCountries(updatedCountries);
   };
-
+  const handleSort = () => {
+    const sortedCountries = [...countries].sort((a, b) =>
+      a.name.localeCompare(b.name)
+    );
+    setCountries(sortedCountries);
+  };
   return (
     <div className="flex flex-col gap-4 w-3/4 mx-auto p-6">
       <h2 className="font-title text-lg mt-12">Favorite Countries</h2>
+
       <div className="card-box">
         {countries.map((selectedCountry) => {
           if (selectedCountry.select)
@@ -38,6 +44,10 @@ function CountryList() {
             );
         })}
       </div>
+      <div>
+        <button onClick={handleSort}>이름순</button>
+      </div>
+
       <h2 className="font-title text-2xl">Countries</h2>
       <div className="card-box">
         {countries.map((country) => {

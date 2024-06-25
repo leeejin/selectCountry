@@ -20,7 +20,6 @@ class CountryAPI {
           select: false,
         })
       );
-      console.log(newData);
       return newData;
     } catch (error) {
       console.error(error);
