@@ -30,8 +30,10 @@ function CountryList() {
     setSelectedCountries(filteredCountries);
   };
   return (
-    <div>
-      <h2 className="font-bold text-center text-lg">Favorite Countries</h2>
+    <div className="flex flex-col gap-4 w-3/4 mx-auto p-6">
+      <h2 className="font-bold text-center text-lg mt-12">
+        Favorite Countries
+      </h2>
       <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {selectedCountries.map((selectedCountry) => (
           <CountryCard
