@@ -25,10 +25,8 @@ function CountryList() {
 
   return (
     <div className="flex flex-col gap-4 w-3/4 mx-auto p-6">
-      <h2 className="font-bold text-center text-lg mt-12">
-        Favorite Countries
-      </h2>
-      <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <h2 className="font-title text-lg mt-12">Favorite Countries</h2>
+      <div className="card-box">
         {countries.map((selectedCountry) => {
           if (selectedCountry.select)
             return (
@@ -40,20 +38,18 @@ function CountryList() {
             );
         })}
       </div>
-      <h2 className="font-bold text-center text-2xl">Countries</h2>
-      <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {countries
-          ?.sort((a, b) => a.id - b.id)
-          .map((country) => {
-            if (!country.select)
-              return (
-                <CountryCard
-                  key={country.id}
-                  country={country}
-                  handleSelect={() => handleSelect(country)}
-                />
-              );
-          })}
+      <h2 className="font-title text-2xl">Countries</h2>
+      <div className="card-box">
+        {countries.map((country) => {
+          if (!country.select)
+            return (
+              <CountryCard
+                key={country.id}
+                country={country}
+                handleSelect={() => handleSelect(country)}
+              />
+            );
+        })}
       </div>
     </div>
   );

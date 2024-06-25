@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.card-box {
+  @apply grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4;
+}
+.card {
+  @apply border-none rounded shadow-md hover:shadow-lg p-3;
+}
+.font-title {
+  @apply font-bold text-center;
+}

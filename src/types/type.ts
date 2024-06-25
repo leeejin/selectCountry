@@ -7,7 +7,7 @@ export type APICountry = {
   flags: {
     png: string;
   };
-}; //capital[0] :수도, continents[0]: 대륙, name.comment : 이름, flags.png :이미지
+};
 
 export type Country = {
   capital: string;
