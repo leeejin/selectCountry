@@ -10,8 +10,7 @@ export type APICountry = {
 };
 
 export type Country = {
-  capital: string;
-  continents: string;
+  capital: string[];
   name: string;
   flags: string;
   id: number;

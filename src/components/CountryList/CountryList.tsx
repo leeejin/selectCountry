@@ -11,7 +11,6 @@ function CountryList() {
   const [totalCountries, setTotalCountries] = useState<Country[]>([]);
   const [totalLength, setTotalLength] = useState<number>(0);
   const [offset, setOffset] = useState<number>(0);
-
   useEffect(() => {
     async function fetchCountries() {
       const response = await api.countries.getAllCountries(offset);

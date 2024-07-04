@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { AxiosInstance } from "axios";
 import { itemCountPerPage } from "../components/CountryList/CountryList";
-import { APICountry } from "../types/type";
+import { Country } from "../types/type";
 
 class CountryAPI {
   private client: AxiosInstance;
@@ -13,20 +14,26 @@ class CountryAPI {
       const response = await this.client.get("/all");
       const data = response.data;
       const dataLength = data.length;
-      const newData = data
-        .slice(offset, offset + itemCountPerPage)
-        .map(({ capital, continents, name, flags }: APICountry) => {
-          const result = {
+
+      const newData: Country[] = Array.from(
+        { length: offset + itemCountPerPage },
+        (_) => {
+          const item = data[this.index];
+          if (!item) {
+            return null;
+          }
+
+          const result: Country = {
             id: this.index,
-            capital,
-            continents,
-            name: name.common,
-            flags: flags.png,
+            capital: item.capital || [""],
+            name: item.name.common,
+            flags: item.flags.png,
             select: false,
           };
-          this.index += 1;
+          this.index++;
           return result;
-        });
+        }
+      ).filter((item) => item !== null);
       return { newData, dataLength };
     } catch (error) {
       console.error(error);

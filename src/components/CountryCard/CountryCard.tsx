@@ -6,6 +6,7 @@ interface SelectCard {
 }
 
 function CountryCard({ handleSelect, country }: SelectCard) {
+  console.log(country.id, country.capital);
   return (
     <div
       className={clsx("card", {
@@ -16,7 +17,11 @@ function CountryCard({ handleSelect, country }: SelectCard) {
     >
       <img className="w-[60px] m-auto" src={country.flags} />
       <h4 className="font-semibold">{country.name}</h4>
-      <p className="text-gray-600">{country.capital}</p>
+      <p className="text-gray-600">
+        {country.capital?.map((capital, index) => (
+          <span key={index}>{capital}</span>
+        ))}
+      </p>
     </div>
   );
 }
