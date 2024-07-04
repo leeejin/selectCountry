@@ -1,5 +1,9 @@
 import clsx from "clsx";
-import { SelectCard } from "../../types/type";
+import { Country } from "../../types/type";
+interface SelectCard {
+  handleSelect: (selectedContry: Country) => void;
+  country: Country;
+}
 
 function CountryCard({ handleSelect, country }: SelectCard) {
   return (

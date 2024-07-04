@@ -17,8 +17,3 @@ export type Country = {
   id: number;
   select: boolean;
 };
-
-export interface SelectCard {
-  handleSelect: (selectedContry: Country) => void;
-  country: Country;
-}
