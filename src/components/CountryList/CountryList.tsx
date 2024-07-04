@@ -5,7 +5,7 @@ import CountryCard from "../CountryCard";
 import Pagination from "../Pagination";
 
 export const itemCountPerPage: number = 20;
-export const pageCountPerPage: number = 5;
+export const pageCountPerPage: number = 10;
 
 function CountryList() {
   const [totalLength, setTotalLength] = useState<number>(0);
@@ -78,14 +78,16 @@ function CountryList() {
             );
         })}
       </div>
-      {countries.length > 0 && (
-        <Pagination
-          itemCount={totalLength}
-          itemCountPerPage={itemCountPerPage}
-          pageCountPerPage={pageCountPerPage}
-          clickListener={setCurrentPageFunc}
-        />
-      )}
+      <div className="text-center">
+        {countries.length > 0 && (
+          <Pagination
+            itemCount={totalLength}
+            itemCountPerPage={itemCountPerPage}
+            pageCountPerPage={pageCountPerPage}
+            clickListener={setCurrentPageFunc}
+          />
+        )}
+      </div>
     </div>
   );
 }

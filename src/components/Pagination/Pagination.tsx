@@ -18,12 +18,12 @@ const Pagination = ({
   pageCountPerPage,
   clickListener,
 }: PaginationProps) => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [startPage, setStartPage] = useState(1);
-  const [endPage, setEndPage] = useState(pageCountPerPage); //5
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [startPage, setStartPage] = useState<number>(1);
+  const [endPage, setEndPage] = useState<number>(pageCountPerPage);
 
-  const maxPage = Math.ceil(itemCount / itemCountPerPage); //17
-  const pages = Array.from({ length: maxPage + 1 }, (_, i) => i);
+  const maxPage: number = Math.ceil(itemCount / itemCountPerPage);
+  const pages: number[] = Array.from({ length: maxPage + 1 }, (_, i) => i);
 
   useEffect(() => {
     if (maxPage < pageCountPerPage) {
@@ -70,7 +70,11 @@ const Pagination = ({
 
   return (
     <div>
-      <button onClick={leftPageClicked} disabled={startPage === 1}>
+      <button
+        onClick={leftPageClicked}
+        disabled={startPage === 1}
+        className={`${startPage === 1 ? "bg-opacity-50" : ""}`}
+      >
         &lt;
       </button>
       {pages.slice(startPage, endPage + 1).map((page, i) => (
@@ -81,7 +85,11 @@ const Pagination = ({
           clickListener={pageNumberClicked}
         />
       ))}
-      <button onClick={rightPageClicked} disabled={endPage === maxPage}>
+      <button
+        onClick={rightPageClicked}
+        disabled={endPage === maxPage}
+        className={`${endPage === maxPage ? "bg-opacity-50" : ""}`}
+      >
         &gt;
       </button>
     </div>
