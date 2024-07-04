@@ -8,8 +8,8 @@ export const itemCountPerPage: number = 20;
 export const pageCountPerPage: number = 10;
 
 function CountryList() {
+  const [totalCountries, setTotalCountries] = useState<Country[]>([]);
   const [totalLength, setTotalLength] = useState<number>(0);
-  const [countries, setCountries] = useState<Country[]>([]);
   const [offset, setOffset] = useState<number>(0);
 
   useEffect(() => {
@@ -20,7 +20,8 @@ function CountryList() {
           newData,
           dataLength,
         }: { newData: Country[]; dataLength: number } = response;
-        setCountries(newData);
+
+        setTotalCountries((prev) => prev.concat(newData));
         setTotalLength(dataLength);
       }
     }
@@ -28,18 +29,18 @@ function CountryList() {
   }, [offset]);
 
   const handleSelect = (selectedCountry: Country): void => {
-    const updatedCountries = countries.map((country) =>
+    const updatedCountries = totalCountries.map((country) =>
       country.id === selectedCountry.id
         ? { ...country, select: !country.select }
         : country
     );
-    setCountries(updatedCountries);
+    setTotalCountries(updatedCountries);
   };
   const handleSort = (): void => {
-    const sortedCountries = [...countries].sort((a, b) =>
+    const sortedCountries = [...totalCountries].sort((a, b) =>
       a.name.localeCompare(b.name)
     );
-    setCountries(sortedCountries);
+    setTotalCountries(sortedCountries);
   };
   const setCurrentPageFunc = (page: number): void => {
     const lastOffset: number = (page - 1) * itemCountPerPage;
@@ -50,7 +51,7 @@ function CountryList() {
       <h2 className="font-title text-lg mt-12">Favorite Countries</h2>
 
       <div className="card-box">
-        {countries?.map((selectedCountry) => {
+        {totalCountries?.map((selectedCountry) => {
           if (selectedCountry.select)
             return (
               <CountryCard
@@ -67,19 +68,21 @@ function CountryList() {
 
       <h2 className="font-title text-2xl">Countries</h2>
       <div className="card-box">
-        {countries?.map((country) => {
-          if (!country.select)
-            return (
-              <CountryCard
-                key={country.id}
-                country={country}
-                handleSelect={() => handleSelect(country)}
-              />
-            );
-        })}
+        {totalCountries
+          ?.slice(offset, offset + itemCountPerPage)
+          .map((country) => {
+            if (!country.select)
+              return (
+                <CountryCard
+                  key={country.id}
+                  country={country}
+                  handleSelect={() => handleSelect(country)}
+                />
+              );
+          })}
       </div>
       <div className="text-center">
-        {countries.length > 0 && (
+        {totalCountries.length > 0 && (
           <Pagination
             itemCount={totalLength}
             itemCountPerPage={itemCountPerPage}
