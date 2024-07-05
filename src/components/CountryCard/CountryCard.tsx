@@ -6,7 +6,6 @@ interface SelectCard {
 }
 
 function CountryCard({ handleSelect, country }: SelectCard) {
-  console.log(country.id, country.capital);
   return (
     <div
       className={clsx("card", {

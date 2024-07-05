@@ -36,27 +36,3 @@ class CountryAPI {
   }
 }
 export default CountryAPI;
-//  const data = response.data;
-//  const total_pages: number = Math.ceil(data.length / itemCountPerPage);
-//  const queryLength = page === 0 ? itemCountPerPage : response.data.length;
-// const results: Country[] = Array.from(
-//   { length: queryLength },
-//   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-//   (_) => {
-//     const item = data[this.index];
-//     if (!item) {
-//       return null;
-//     }
-
-//     const result: Country = {
-//       id: this.index,
-//       capital: item.capital || [""],
-//       name: item.name.common,
-//       flags: item.flags.png,
-//       select: false,
-//     };
-//     this.index++;
-//     return result;
-//   }
-// ).filter((item) => item !== null);
-// return { results, total_pages };
