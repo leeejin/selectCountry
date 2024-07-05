@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { AxiosInstance } from "axios";
 import { itemCountPerPage } from "../components/CountryList/CountryList";
 import { Country } from "../types/type";
@@ -13,10 +12,11 @@ class CountryAPI {
     try {
       const response = await this.client.get("/all");
       const data = response.data;
-      const dataLength = data.length;
+      const total_pages: number = Math.ceil(data.length / itemCountPerPage);
 
-      const newData: Country[] = Array.from(
+      const results: Country[] = Array.from(
         { length: offset + itemCountPerPage },
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         (_) => {
           const item = data[this.index];
           if (!item) {
@@ -34,7 +34,7 @@ class CountryAPI {
           return result;
         }
       ).filter((item) => item !== null);
-      return { newData, dataLength };
+      return { results, total_pages };
     } catch (error) {
       console.error(error);
     }

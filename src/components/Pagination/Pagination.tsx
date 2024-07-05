@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 interface PaginationProps {
-  itemCount: number;
+  maxPage: number;
   itemCountPerPage: number;
   pageCountPerPage: number;
   clickListener: (page: number) => void;
@@ -13,8 +13,7 @@ interface NumberingProps {
 }
 
 const Pagination = ({
-  itemCount,
-  itemCountPerPage,
+  maxPage,
   pageCountPerPage,
   clickListener,
 }: PaginationProps) => {
@@ -22,7 +21,6 @@ const Pagination = ({
   const [startPage, setStartPage] = useState<number>(1);
   const [endPage, setEndPage] = useState<number>(pageCountPerPage);
 
-  const maxPage: number = Math.ceil(itemCount / itemCountPerPage);
   const pages: number[] = Array.from({ length: maxPage + 1 }, (_, i) => i);
 
   useEffect(() => {

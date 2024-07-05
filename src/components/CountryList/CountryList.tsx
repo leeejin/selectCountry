@@ -16,12 +16,12 @@ function CountryList() {
       const response = await api.countries.getAllCountries(offset);
       if (response) {
         const {
-          newData,
-          dataLength,
-        }: { newData: Country[]; dataLength: number } = response;
-
-        setTotalCountries((prev) => prev.concat(newData));
-        setTotalLength(dataLength);
+          results,
+          total_pages,
+        }: { results: Country[]; total_pages: number } = response;
+        console.log(results, total_pages);
+        setTotalCountries((prev) => prev.concat(results));
+        setTotalLength(total_pages);
       }
     }
     fetchCountries();
@@ -83,7 +83,7 @@ function CountryList() {
       <div className="text-center">
         {totalCountries.length > 0 && (
           <Pagination
-            itemCount={totalLength}
+            maxPage={totalLength}
             itemCountPerPage={itemCountPerPage}
             pageCountPerPage={pageCountPerPage}
             clickListener={setCurrentPageFunc}
